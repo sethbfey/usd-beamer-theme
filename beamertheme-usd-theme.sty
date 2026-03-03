@@ -1,0 +1,275 @@
+% USDv2 beamer theme
+% Creation: 02/07/2025
+% Author: Seth Fey
+
+
+% ========================================
+% REQUIRED PACKAGES
+% ========================================
+
+% MATH
+\RequirePackage{amsmath}
+\RequirePackage{amssymb}
+\RequirePackage{amsfonts}
+\RequirePackage{amsthm}
+
+% GENERAL
+\RequirePackage{tikz}     % used for constructing the geometry of frames
+\RequirePackage{xcolor}   % used for defining USD colors
+\RequirePackage{graphicx} % used for importing USD logos and graphics
+\RequirePackage{hyperref} % used for references
+\RequirePackage{ragged2e} % used for justifying presentation title
+
+
+% ========================================
+% COLORS 
+% ========================================
+
+% --- DEFINING OFFICIAL USD COLORS ---
+% MAIN COLORS
+\definecolor{USD@CoyoteRed} {RGB}{210, 021, 051}
+\definecolor{USD@DarkRed1}  {RGB}{161, 007, 043}
+\definecolor{USD@DarkRed2}  {RGB}{130, 000, 020}
+\definecolor{USD@Black100}  {RGB}{000, 000, 000}
+\definecolor{USD@Black80}   {RGB}{088, 089, 091}
+\definecolor{USD@Black34}   {RGB}{180, 182, 184}
+\definecolor{USD@White}     {RGB}{255, 255, 255}
+
+% ACCENT COLORS
+\definecolor{USD@Beige}   {RGB}{249, 242, 233}
+\definecolor{USD@Gray}    {RGB}{110, 098, 089}
+\definecolor{USD@DimGray} {RGB}{155, 139, 125}
+\definecolor{USD@Copper}  {RGB}{187, 129, 057}
+\definecolor{USD@Golden}  {RGB}{249, 157, 049}
+\definecolor{USD@Indigo}  {RGB}{103, 049, 101}
+\definecolor{USD@Teal}    {RGB}{001, 095, 099}
+
+% --- APPLYING COLORS ---
+% TITLE FRAME
+\setbeamercolor{title}     {fg=USD@White}
+\setbeamercolor{subtitle}  {fg=USD@White}
+\setbeamercolor{author}    {fg=USD@White}
+\setbeamercolor{date}      {fg=USD@White}
+\setbeamercolor{institute} {fg=USD@White}
+\setbeamercolor{head}      {bg=USD@CoyoteRed}
+\setbeamercolor{jumbo}     {bg=USD@CoyoteRed}
+
+% BODY FRAMES
+\setbeamercolor{frametitle}             {fg=USD@White}
+\setbeamercolor{framesubtitle}          {fg=USD@White}
+\setbeamercolor{alerted text}           {fg=USD@DarkRed2}
+\setbeamercolor{normal text}            {fg=USD@Black80}
+\setbeamercolor{structure}              {fg=USD@DarkRed2}
+\setbeamercolor{block title}            {use=structure, fg=USD@White, bg=USD@DarkRed1}
+\setbeamercolor{block body}             {use=structure, fg=USD@Black80, bg=USD@DarkRed1!10}
+\setbeamercolor{progress bar}           {fg=USD@DarkRed1, bg=USD@Beige}
+\setbeamercolor{progress bar progress}  {use=progress bar, bg=progress bar.fg}
+
+% HYPERREF SETUP
+\hypersetup{
+    colorlinks,
+    linkcolor   = USD@DarkRed2,
+    anchorcolor = USD@CoyoteRed,
+    citecolor   = USD@Teal,
+    urlcolor    = USD@CoyoteRed
+}
+
+
+% ========================================
+% FONTS 
+% ========================================
+
+% MAIN FONT
+\usefonttheme{serif}
+
+% TITLE FRAME
+\setbeamerfont{title}     {series=\bfseries, size=\Large}
+\setbeamerfont{subtitle}  {series=\mdseries, size=\large}
+\setbeamerfont{author}    {series=\mdseries, size=\small}
+\setbeamerfont{date}      {series=\mdseries, size=\small}
+\setbeamerfont{institute} {series=\mdseries, size=\footnotesize}
+
+% BODY FRAMES
+\setbeamerfont{frametitle}    {series=\bfseries, size=\Large}
+\setbeamerfont{framesubtitle} {series=\mdseries, size=\small}
+\setbeamerfont{block title}   {series=\bfseries, size=\normalsize}
+\setbeamerfont{block body}    {series=\mdseries, size=\normalsize}
+
+
+% ========================================
+% ETCETERA SETTINGS
+% ========================================
+
+% GENERAL
+\setlength{\parskip}{5pt}                        % global paragraph spacing
+\setbeamertemplate{navigation symbols}{}         % removes navigation symbols
+\setbeamertemplate{blocks}[rounded][shadow=true] % rounded boxes
+
+% LISTS
+\setbeamertemplate{itemize item}        {\textbullet}           % depth 1
+\setbeamertemplate{itemize subitem}     {\(\circ\)}             % depth 2
+\setbeamertemplate{itemize subsubitem}  {\textasteriskcentered} % depth 3
+
+
+% ========================================
+% TITLE FRAME TEMPLATE
+% ========================================
+
+% --- BACKGROUND LAYER ---
+\setbeamertemplate{background}{
+    % apply this background only to the title page
+    \ifnum\theframenumber=1
+        \begin{tikzpicture}[remember picture, overlay]
+
+            % --- TOP PANEL ---
+            % LEFT LOGO
+            \node[anchor=west, inner sep=0pt] at 
+                ([xshift=0.015\paperheight, yshift=-0.075\paperheight]current page.north west) {%
+                    \includegraphics[height=0.12\paperheight]{graphics/logo-usd-main.png}
+                };
+
+            % RIGHT LOGO (optional; intended for conference logo)
+            \node[anchor=east, inner sep=0pt] at 
+                ([xshift=-0.015\paperwidth, yshift=-0.075\paperheight]current page.north east) {%
+                    \ifx\inserttitlegraphic\@empty\else\inserttitlegraphic\fi
+                };
+
+            % --- MIDDLE PANEL ---
+            % RED RECTANGLE
+            \fill[USD@CoyoteRed] 
+                ([yshift=-0.15\paperheight]current page.north west) rectangle 
+                ([yshift=0.15\paperheight]current page.south east);
+
+            % LARGE LOGO
+            \node[anchor=east, inner sep=0pt, opacity=0.50] at 
+                ([xshift=-0.075\paperwidth, yshift=0\paperheight]current page.east) {%
+                    \includegraphics[height=0.85\paperheight]{graphics/logo-sd-white.png}
+                };
+                
+        \end{tikzpicture}
+    \fi
+}
+
+% --- FOREGROUND LAYER ---
+\setbeamertemplate{title page}{%
+    \begin{tikzpicture}[remember picture, overlay]
+        
+        % TITLE / SUBTITLE
+        \node[anchor=north, inner sep=0pt, text width=0.85\paperwidth] 
+            at ([yshift=-0.20\paperheight]current page.north) {%
+            \justifying
+            \usebeamerfont{title}\usebeamercolor[fg]{title}\inserttitle\par
+            \vspace{0.5em}
+            
+            \ifx\insertsubtitle\@empty\else
+                \usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle\par
+            \fi
+        };
+
+        % AUTHOR / INSTITUTE / DATE
+        \node[anchor=south, inner sep=0pt, text width=0.85\paperwidth] 
+            at ([yshift=0.20\paperheight]current page.south) {%
+            \raggedright
+            \usebeamerfont{author}\usebeamercolor[fg]{author}\insertauthor\par
+            \vspace{0.5em}
+            
+            \usebeamerfont{institute}\usebeamercolor[fg]{institute}\insertinstitute\par
+            \vspace{1.5em}
+            
+            \usebeamerfont{date}\usebeamercolor[fg]{date}\insertdate\par
+        };
+
+    \end{tikzpicture}
+}
+
+
+% ========================================
+% BODY FRAME TEMPLATE
+% ========================================
+
+% --- HEADER ROW ---
+\setbeamertemplate{frametitle}{
+    \begin{tikzpicture}[remember picture, overlay]
+        
+        % RED RECTANGLE
+        \fill[USD@CoyoteRed] 
+            (current page.north west) rectangle 
+            ([yshift=-0.15\paperheight]current page.north east);
+
+        % RIGHT LOGO
+        \node[anchor=east, inner sep=0pt] at 
+            ([xshift=-0.0375\paperwidth, yshift=-0.075\paperheight]current page.north east) {%
+                \includegraphics[height=0.12\paperheight]{graphics/logo-sd-white.png}
+            };
+
+        % TITLE / SUBTITLE
+        \ifx\insertframesubtitle\@empty
+            \node[anchor=west, inner sep=0pt, text width=\paperwidth] at 
+                ([xshift=0.0375\paperwidth, yshift=-0.075\paperheight]current page.north west) {%
+                \raggedright
+                \usebeamerfont{frametitle}\usebeamercolor[fg]{title}\insertframetitle
+            };
+        \else
+            \node[anchor=north, inner sep=0pt, text width=\paperwidth] at 
+                ([xshift=0.0375\paperwidth, yshift=-0.03\paperheight]current page.north) {%
+                \raggedright
+                \usebeamerfont{frametitle}\usebeamercolor[fg]{title}\insertframetitle
+            };
+            \node[anchor=south, inner sep=0pt, text width=\paperwidth] at 
+                ([xshift=0.0375\paperwidth, yshift=0.88\paperheight]current page.south) {%
+                \raggedright
+                \usebeamerfont{framesubtitle}\usebeamercolor[fg]{framesubtitle}\insertframesubtitle
+            };
+        \fi
+
+    \end{tikzpicture}
+    
+    % USER CONTENTS START HERE
+    \vspace*{0.10\paperheight} 
+}
+
+% --- BOTTOM PROGRESS BAR ---
+\defbeamertemplate{footline}{progress bar}{
+    \leavevmode%
+    \ifnum\insertframenumber>1
+        \dimen0=\paperwidth
+        \multiply\dimen0 by \numexpr\insertframenumber - 1\relax
+        \divide\dimen0 by \numexpr\inserttotalframenumber - 1\relax
+        \edef\progressbarwidth{\the\dimen0}
+        
+        \begin{beamercolorbox}[wd=\paperwidth,ht=3pt,dp=1pt]{progress bar}
+            \begin{beamercolorbox}[wd=\progressbarwidth,ht=3pt,dp=1pt]{progress bar progress}
+            \end{beamercolorbox}
+        \end{beamercolorbox}
+    \fi
+}
+
+\setbeamertemplate{footline}[progress bar]
+
+
+% ========================================
+% TABLE OF CONTENTS
+% ========================================
+
+\setbeamertemplate{section in toc}{
+    \(\blacktriangleright\)~\textbf{\inserttocsection}
+}
+\setbeamertemplate{subsection in toc}{}
+\setbeamertemplate{frametitle continuation}{}
+
+\AtBeginSection[]{%
+    \begingroup
+        \begin{frame}[t]{Contents}
+
+            % SILOHOUETTE
+            \begin{tikzpicture}[remember picture, overlay]
+                \node[anchor=south east, inner sep=0pt] at 
+                ([xshift=-0.0375\paperwidth, yshift=3pt]current page.south east) {%
+                    \includegraphics[height=0.75\paperheight]{graphics/old-main-silhouette.png}
+                };
+            \end{tikzpicture}
+
+            \tableofcontents[currentsection]
+        \end{frame}
+    \endgroup
+}

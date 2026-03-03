@@ -1,0 +1,46 @@
+% ========================================
+% PREAMBLE
+% ========================================
+
+% DEFINE BEAMER CLASS
+\documentclass[10pt,aspectratio=169]{beamer}
+
+% LOAD BEAMER THEME
+\usetheme{-usd-theme}
+
+% INSTALL PACKAGES HERE
+\usepackage{lipsum}
+
+% TITLE FRAME ARGUMENTS
+\title{This is the Title of Your Presentation}
+\subtitle{This is the Subtitle of Your Presentation}
+\author{Author(s)}
+\institute[USD]{%
+    Department of XYZ \par%
+    University of South Dakota \par%
+    Vermillion, USA \par%
+}
+\date{Conference/Event Name, Date}
+
+
+% ========================================
+% MAIN DOCUMENT
+% ========================================
+
+\begin{document}
+
+\maketitle
+
+\begin{frame}[t]{Frame Title One}{Frame Subtitle}
+    \lipsum[3]
+\end{frame}
+
+\section{Section Title One}
+
+\begin{frame}[t]{Frame Title Two}
+    \lipsum[4]
+\end{frame}
+
+\section{Section Title Two}
+
+\end{document}
