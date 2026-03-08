@@ -1,5 +1,5 @@
 # USD Beamer Theme
-A professional LaTeX Beamer theme for the University of South Dakota, primed for math-heavy presentations using LaTeX.
+A minimal LaTeX Beamer theme for the University of South Dakota, intended for math-heavy presentations using LaTeX. Over the past year, others and I have used this theme in various settings, including academic, thesis, and conference presentations.
 
 ## Features
 * Official Colors
